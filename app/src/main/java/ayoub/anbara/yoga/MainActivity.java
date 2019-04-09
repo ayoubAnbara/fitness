@@ -31,7 +31,6 @@ import es.dmoral.toasty.Toasty;
 public class MainActivity extends AppCompatActivity {
     Button btn_exercice, btn_setting, btn_calendar;
     ImageView btnTraining;
-    private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
     @Override
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         btn_calendar = findViewById(R.id.btn_calendar);
 // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
-        mAdView = findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
