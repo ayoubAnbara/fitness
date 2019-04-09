@@ -19,8 +19,10 @@ import android.widget.Toast;
 //import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import ayoub.anbara.yoga.ratingDialog.GlobalUtils;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_exercice, btn_setting, btn_calendar;
     ImageView btnTraining;
     private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
 
         btn_exercice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,8 +193,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences(GlobalUtils.NAME_PREFERENCE_DIALOG_RATING, 0);
         if ((!preferences.getBoolean(GlobalUtils.KEY_IS_NEVER, false)) && isConnected(this))
             GlobalUtils.showDialog(this);
-        else
+        else {
             super.onBackPressed();
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }
+        }
         //finish();
     }
 }
