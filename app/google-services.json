@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "771011044934",
+    "firebase_url": "https://yoga-76afd.firebaseio.com",
+    "project_id": "yoga-76afd",
+    "storage_bucket": "yoga-76afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771011044934:android:16af1d8ff6cb6d2e",
+        "android_client_info": {
+          "package_name": "ayoub.anbara.yoga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771011044934-janhoal3gndae0sj1bl3e12jmrcjm9sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ayoub.anbara.yoga",
+            "certificate_hash": "96758b055cc96b14da94ce0c2792d3dad4104abb"
+          }
+        },
+        {
+          "client_id": "771011044934-fctvd4qjearambvdai99nv66mgg0t0vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0YM3fydMrj3-DgBZvH5A7xShnc0inHGU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771011044934-fctvd4qjearambvdai99nv66mgg0t0vb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-9059580756298090~2573551700"
+    }
+  ],
+  "configuration_version": "1"
+}

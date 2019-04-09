@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="done">تم</string>
+    <string name="skip">تخطي</string>
+    <string name="congratulation">تهانينا! لقد أكملت تمارين اليوم</string>
+    <string name="reset_time">"إعادة ضبظ الوقت "</string>
+    <string name="finished">انتهى!!!</string>
+    <string name="get_ready">استعد</string>
+    <string name="start">ابدا</string>
+    <string name="exercises">التمارين</string>
+    <string name="setting">الاعدادات</string>
+    <string name="calendar">التقويم</string>
+    <string name="DONE">تم</string>
+    <string name="finish_small_capital">النهاية!!!</string>
+    <string name="medium">متوسط</string>
+    <string name="hard">صعب</string>
+    <string name="easy">سهل</string>
+    <string name="save">حفظ</string>
+    <string name="it_s_time">حان الوقت</string>
+    <string name="time_to_training">وقت التدريب</string>
+    <string name="rate">تقييم التطبيق</string>
+    <string name="share">مشاركة التطبيق</string>
+    <string name="more_apps">المزيد من تطبيقاتنا</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="more">المزيد</string>
+    <string name="info">تذكير</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="share_app_intent">مشاركة عبر</string>
+    <string name="dowloand_play_store">حمل متجر بلاي من فضل</string>
+    <string name="text_to_share">"مرحبا حمل هذا التطبيق الرائع "</string>
+    <string name="app_name">اليوغا في المنزل</string>
+    <string name="text_ratingDialog1">هل اعجبك تطبيق اليوغا في المنزل؟</string>
+    <string name="text_ratingDialog2">المرجوا منك تقييمنا!</string>
+    <string name="later">لاحقا</string>
+    <string name="never">ابدا</string>
+    <string name="done_ok">حسنا</string>
+    <string name="title_ratingDialog">قيمنا</string>
+</resources>

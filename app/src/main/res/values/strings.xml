@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Yoga at Home</string>
+    <string name="done">done</string>
+    <string name="skip">Skip</string>
+    <string name="congratulation">Congratulation ! You\'re done with today exercises</string>
+    <string name="reset_time">RESET TIME</string>
+    <string name="finished">FINISHED!!!!</string>
+    <string name="get_ready">GET READY</string>
+    <string name="start">Start</string>
+    <string name="easy_pose" translatable="false">Easy Pose</string>
+    <string name="cobra_pose" translatable="false">Cobra Pose</string>
+    <string name="downward_facing_dog" translatable="false">Downward Facing Dog</string>
+    <string name="boat_pose" translatable="false">Boat Pose</string>
+    <string name="half_pigeon" translatable="false">Half Pigeon</string>
+    <string name="low_lunge" translatable="false">Low Lunge</string>
+    <string name="upward_bow" translatable="false">Upward Bow</string>
+    <string name="crescent_lunge" translatable="false">Crescent Lunge</string>
+    <string name="warrior_pose" translatable="false">Warrior Pose</string>
+    <string name="bow_pose" translatable="false">Bow Pose</string>
+    <string name="warrior_pose2" translatable="false">Warrior Pose 2</string>
+    <string name="workout_done" translatable="false">workout done</string>
+    <string name="exercises">Exercises</string>
+    <string name="setting">Settings</string>
+    <string name="calendar">calendar</string>
+    <string name="DONE">DONE</string>
+    <string name="finish_small_capital">Finish!!!</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="save">Save</string>
+    <string name="easy">Easy</string>
+    <string name="it_s_time">It\'s time</string>
+    <string name="time_to_training">time to training</string>
+    <string name="info">Info</string>
+    <string name="rate">Rate</string>
+    <string name="share">Share</string>
+    <string name="more_apps">More apps</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="share_app_intent">share</string>
+    <string name="more">more</string>
+    <string name="saved">SAVED !!!!</string>
+    <string name="text_to_share">Hi download this cool app i found on Google play.</string>
+    <string name="dowloand_play_store">Please download Google play store</string>
+    <string name="banner_id" translatable="false">ca-app-pub-9059580756298090/2175888460</string>
+
+    <string name="title_ratingDialog">Rate Us</string>
+    <string name="text_ratingDialog1">Do you love Yoga at Home?</string>
+    <string name="text_ratingDialog2">Please rate us!</string>
+    <string name="later">Later</string>
+    <string name="never">Never</string>
+    <string name="done_ok">Done</string>
+</resources>

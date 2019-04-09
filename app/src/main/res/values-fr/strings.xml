@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yoga a la maison</string>
+    <string name="done">"terminé "</string>
+    <string name="skip">Passer</string>
+    <string name="congratulation">Félicitation ! Vous avez terminé les exercices d\'aujourd\'hui</string>
+    <string name="reset_time">REMISE À 0</string>
+    <string name="finished">"FINI !!!! "</string>
+    <string name="get_ready">"SOIT PRÊT "</string>
+    <string name="start">Démarrer</string>
+    <string name="exercises">Des exercices</string>
+    <string name="setting">"Réglages "</string>
+    <string name="calendar">Calendrier</string>
+    <string name="DONE">"TERMINÉ "</string>
+    <string name="finish_small_capital">FIN!!!</string>
+    <string name="medium">"Moyen "</string>
+    <string name="hard">"Difficile "</string>
+    <string name="save">"Sauvegarder "</string>
+    <string name="easy">"Facile "</string>
+    <string name="it_s_time">"C'est l'heure "</string>
+    <string name="time_to_training">temps de formation</string>
+    <string name="info">"Info "</string>
+    <string name="more">"plus "</string>
+    <string name="privacy_policy">"Politique de confidentialité "</string>
+    <string name="more_apps">"Plus d'applications "</string>
+    <string name="share">Partager</string>
+    <string name="rate">Noter app</string>
+    <string name="saved">SAVED !!!!</string>
+    <string name="share_app_intent">partager via</string>
+    <string name="dowloand_play_store">S\'il vous plaît télécharger Google Play Store</string>
+    <string name="text_to_share">Salut télécharger cette cool application que j\'ai trouvé sur Google Play.</string>
+
+    <string name="done_ok">Ok</string>
+    <string name="never">Jamais</string>
+    <string name="later">Plus tard</string>
+    <string name="text_ratingDialog2">S\'il vous plaît noter nous!</string>
+    <string name="text_ratingDialog1">Avez-vous aimé Yoga a la maison?</string>
+    <string name="title_ratingDialog">Rate Us</string>
+</resources>

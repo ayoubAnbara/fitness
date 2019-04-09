@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004d40</color>
+    <color name="colorPrimaryDark">#00251a</color>
+    <color name="colorAccent">#FDF325</color>
+
+    <color name="indigo">#3964c3</color>
+    <color name="pink">#FFC0CB</color>
+
+    <color name="colorControlActivated">#46bdbf</color>
+    <color name="colorSwitchThumbNormal">#f1f1f1</color>
+    <color name="colorForeground">#42221f1f</color>
+    <color name="gray">#FF888888</color>
+    <color name="move">#5b08ba</color>
+
+
+
+
+</resources>

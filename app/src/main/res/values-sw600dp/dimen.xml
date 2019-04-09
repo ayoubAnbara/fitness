@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <resources>
+    <dimen name="FButton_height">100dp</dimen>
+    <dimen name="textSize">25sp</dimen>
+
+    </resources>
