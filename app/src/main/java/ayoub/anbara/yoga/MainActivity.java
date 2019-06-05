@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rate() {
-        final String appPackageName = "ayoub.anbara.yoga";
+        final String appPackageName = getPackageName();
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException e) {
