@@ -1,9 +1,11 @@
 package ayoub.anbara.yoga;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +33,7 @@ public class ViewExercices extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private CountDownTimer countDownTimer;
     private  MediaPlayer sound_fin;
-
+private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,12 @@ public class ViewExercices extends AppCompatActivity {
 
         });
        sound_fin = MediaPlayer.create(this, R.raw.sound_fin);
+       sound_fin.setVolume(1f,1f);
         yogaDB = new YogaDB(this);
+
+         prefs = getSharedPreferences(
+                 MainActivity.preference_counterAds, Context.MODE_PRIVATE);
+
         timer = findViewById(R.id.timer);
         title = findViewById(R.id.title);
         detail_image = findViewById(R.id.detail_img);
@@ -81,22 +88,44 @@ public class ViewExercices extends AppCompatActivity {
                             Toasty.success(ViewExercices.this, getString(R.string.finish_small_capital), Toast.LENGTH_SHORT, true).show();
                             if (sound_fin!=null)
                                 sound_fin.start();
-                            finish();
-                            //show ads
-                            if (mInterstitialAd.isLoaded()) {
-                                mInterstitialAd.show();
+
+                            int counterShowAds= prefs.getInt(MainActivity.preference_counterAds_key,3);
+                            counterShowAds++;
+                            SharedPreferences.Editor editor=prefs.edit();
+                            if (3<=counterShowAds){
+                                if (mInterstitialAd.isLoaded()) {
+                                    mInterstitialAd.show();
+                                    counterShowAds=0;
+                              //      Toast.makeText(ViewExercices.this, "show", Toast.LENGTH_SHORT).show();
+                                }
                             }
+                            editor.putInt(MainActivity.preference_counterAds_key,counterShowAds);
+                            editor.apply();
+
+                            finish();
+
                         }
                     }.start();
                 } else {
                     //Toast.makeText(ViewExercices.this, getString(R.string.finish_small_capital), Toast.LENGTH_SHORT).show();
                     Toasty.success(ViewExercices.this, getString(R.string.finish_small_capital), Toast.LENGTH_SHORT, true).show();
 
-                    finish();
-                    //show ads
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show();
+                    int counterShowAds= prefs.getInt(MainActivity.preference_counterAds_key,3);
+                    counterShowAds++;
+                    SharedPreferences.Editor editor=prefs.edit();
+                    if (3<=counterShowAds){
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                            counterShowAds=0;
+                      //      Toast.makeText(ViewExercices.this, "show", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
+                    editor.putInt(MainActivity.preference_counterAds_key,counterShowAds);
+                    editor.apply();
+
+                    finish();
+
                 }
                 isRunning = !isRunning;
             }

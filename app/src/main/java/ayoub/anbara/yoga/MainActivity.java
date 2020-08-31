@@ -2,36 +2,45 @@ package ayoub.anbara.yoga;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
+
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-//import android.widget.Toast;
 
-import com.cocosw.bottomsheet.BottomSheet;
+import com.applovin.sdk.AppLovinSdk;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.kennyc.bottomsheet.BottomSheetListener;
+import com.kennyc.bottomsheet.BottomSheetMenuDialogFragment;
 
-import ayoub.anbara.yoga.ratingDialog.GlobalUtils;
 import es.dmoral.toasty.Toasty;
+import guy4444.smartrate.SmartRate;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_exercice, btn_setting, btn_calendar;
     ImageView btnTraining;
     private InterstitialAd mInterstitialAd;
+
+    public static final String preference_counterAds ="showIntertiatialAds";
+    public static final String preference_counterAds_key ="counterShowAds";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +48,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
-        mainActivity=this;
+
+        AppLovinSdk.initializeSdk(getApplicationContext());
+
+        mainActivity = this;
         btn_calendar = findViewById(R.id.btn_calendar);
         btn_exercice = findViewById(R.id.btn_exercice);
         btn_setting = findViewById(R.id.btn_setting);
         btnTraining = findViewById(R.id.btn_training);
         btn_calendar = findViewById(R.id.btn_calendar);
 // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
-        MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
+        //   MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
+        MobileAds.initialize(this);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -95,31 +108,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences prefs = getSharedPreferences(
+                preference_counterAds, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(preference_counterAds_key,0); // initialize counter
+        editor.apply();
+
+        showRateUs();
     }
 
 
     public void more(View view) {
-        new BottomSheet.Builder(this).sheet(R.menu.menu).listener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case R.id.rate:
-                        rate();
-                        break;
-                    case R.id.share:
-                        share();
-                        break;
-                    case R.id.moreApp:
-                        moreApp(MainActivity.this);
-                        break;
-                    case R.id.privacy_policy:
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/yogaathome/home"));
-                        startActivity(browserIntent);
-                        break;
+        new BottomSheetMenuDialogFragment.Builder(this)
+                .setSheet(R.menu.menu)
+                //.setTitle("menu")
+                .setListener(new BottomSheetListener() {
+                    @Override
+                    public void onSheetShown(BottomSheetMenuDialogFragment bottomSheetMenuDialogFragment, Object o) {
 
-                }
-            }
-        }).show();
+                    }
+
+                    @Override
+                    public void onSheetItemSelected(BottomSheetMenuDialogFragment bottomSheetMenuDialogFragment, MenuItem menuItem, Object o) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.rate:
+                                rate();
+                                break;
+                            case R.id.share:
+                                share();
+                                break;
+                            case R.id.moreApp:
+                                moreApp(MainActivity.this);
+                                break;
+                            case R.id.privacy_policy:
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/yogaathome/home"));
+                                startActivity(browserIntent);
+                                break;
+
+                        }
+                    }
+
+                    @Override
+                    public void onSheetDismissed(BottomSheetMenuDialogFragment bottomSheetMenuDialogFragment, Object o, int i) {
+
+                    }
+                })
+                // .setObject(myObject)
+                .show(getSupportFragmentManager());
+
 
     }
 
@@ -149,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         if (!MyStartActivity(intent, c)) {
             intent.setData(Uri.parse("http://play.google.com/store/search?q=pub:" + "developer 4you"));
             if (!MyStartActivity(intent, c)) {
-               // Toast.makeText(MainActivity.this,getString(R.string.dowloand_play_store), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this,getString(R.string.dowloand_play_store), Toast.LENGTH_SHORT).show();
                 Toasty.warning(MainActivity.this, getString(R.string.dowloand_play_store), Toast.LENGTH_SHORT, true).show();
             }
         }
@@ -163,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+
     static MainActivity mainActivity;
 
     public static MainActivity getInstance() {
@@ -187,18 +224,37 @@ public class MainActivity extends AppCompatActivity {
         } else
             return false;
     }
+
     @Override
     public void onBackPressed() {
-        SharedPreferences preferences = getSharedPreferences(GlobalUtils.NAME_PREFERENCE_DIALOG_RATING, 0);
-        if ((!preferences.getBoolean(GlobalUtils.KEY_IS_NEVER, false)) && isConnected(this))
-            GlobalUtils.showDialog(this);
-        else {
-            super.onBackPressed();
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            }
+
+        super.onBackPressed();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
         }
+        // else  showRateUs();
+
+
         //finish();
+    }
+
+    private void showRateUs() {
+        // For continual calls -
+        SmartRate.Rate(MainActivity.this
+                , getString(R.string.title_ratingDialog)
+                , "Tell others what you think about this app"
+                , "Continue"
+                , "Please take a moment and rate us on Google Play"
+                , "click here"
+                , getString(R.string.later)
+                , getString(R.string.never)
+                , "Cancel"
+                , "Thanks for the feedback"
+                , Color.parseColor("#2196F3")
+                , 3
+                , 40
+                , 50
+        );
     }
 }
 

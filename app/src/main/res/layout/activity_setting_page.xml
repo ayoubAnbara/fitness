@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +9,7 @@
     tools:context=".SettingPage"
     tools:layout_editor_absoluteY="24dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,9 +55,9 @@
         </RadioGroup>
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
 
         android:id="@+id/switchAlarm"
         android:layout_width="wrap_content"
@@ -79,8 +79,6 @@
         android:id="@+id/timePicker"
         android:layout_width="0dp"
         android:layout_height="349dp"
-
-
         android:layout_marginBottom="16dp"
         android:background="#FF888888"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
@@ -112,4 +110,4 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

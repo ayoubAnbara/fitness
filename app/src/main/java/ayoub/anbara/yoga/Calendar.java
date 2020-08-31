@@ -1,13 +1,13 @@
 package ayoub.anbara.yoga;
 
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 
@@ -30,9 +30,9 @@ public class Calendar extends AppCompatActivity {
         List<String> workoutDay = yogaDB.getWorkoutDay();
         HashSet<CalendarDay> convertedList = new HashSet<>();
         for (String value : workoutDay)
-            convertedList.add(CalendarDay.from(new Date(Long.parseLong(value))));
+           // convertedList.add(CalendarDay.from(new Date(Long.parseLong(value))));
+            convertedList.add(CalendarDay.from( org.threeten.bp.LocalDate.parse(value)));
         materialCalendarView.addDecorator(new WorkoutDayDecorate(convertedList));
-
 
     }
 }
