@@ -32,7 +32,7 @@ public class Daily_Trining extends AppCompatActivity {
     int ex_id = 0, limit_time = 0;
     YogaDB yogaDB;
     List<Exercices> list = new ArrayList<>();
-    private InterstitialAd mInterstitialAd;
+   // private InterstitialAd mInterstitialAd;
     private  boolean isFinished;
     private MediaPlayer sound_fin;
     @Override
@@ -84,6 +84,7 @@ public class Daily_Trining extends AppCompatActivity {
     }
 
     private void initOther() {
+        /*
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-9059580756298090/5839801307");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -95,6 +96,9 @@ public class Daily_Trining extends AppCompatActivity {
             }
 
         });
+        */
+
+
         sound_fin = MediaPlayer.create(this, R.raw.sound_fin);
         yogaDB = new YogaDB(this);
         btnStart = findViewById(R.id.btnStart);
@@ -206,8 +210,8 @@ public class Daily_Trining extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (isFinished && mInterstitialAd.isLoaded())
-            mInterstitialAd.show();
+        /*if (isFinished && mInterstitialAd.isLoaded())
+            mInterstitialAd.show();*/
     }
 
     @Override

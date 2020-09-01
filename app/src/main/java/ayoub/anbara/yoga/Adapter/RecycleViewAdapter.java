@@ -3,14 +3,18 @@ package ayoub.anbara.yoga.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 
@@ -20,6 +24,7 @@ import java.util.List;
 
 import ayoub.anbara.yoga.Interface.ItemClickListener;
 import ayoub.anbara.yoga.Model.Exercices;
+import ayoub.anbara.yoga.MyWebView;
 import ayoub.anbara.yoga.R;
 import ayoub.anbara.yoga.ViewExercices;
 
@@ -83,48 +88,54 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 
-class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public ImageView image;
-    public TextView text;
-    private ItemClickListener itemClickListener;
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public ImageView image;
+        public TextView text;
+        private ItemClickListener itemClickListener;
 
 
-    public MyViewHolder(@NonNull View itemView) {
-        super(itemView);
-        image = itemView.findViewById(R.id.ex_img);
-        text = itemView.findViewById(R.id.ex_name);
-        itemView.setOnClickListener(this);
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.ex_img);
+            text = itemView.findViewById(R.id.ex_name);
+            itemView.setOnClickListener(this);
 
 
+        }
+
+        public MyViewHolder(@NonNull View itemView, int i) {
+            super(itemView);
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onClick(view, getAdapterPosition());
+
+        }
     }
 
-    public MyViewHolder(@NonNull View itemView, int i) {
-        super(itemView);
-    }
+    class MyAdViewHolder extends MyViewHolder {
+        private CardView cardViewContainer;
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
+        //    private AdView adViewIntoRecycle;
+        MyAdViewHolder(final View view) {
+            super(view, 5);
+            cardViewContainer = view.findViewById(R.id.native_ad_container);
+            cardViewContainer.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MyWebView.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            }));
+       /* adViewIntoRecycle = view.findViewById(R.id.adViewIntoRecycleView);
+        adViewIntoRecycle.loadAd(new AdRequest.Builder().build());*/
 
-    @Override
-    public void onClick(View view) {
-        itemClickListener.onClick(view, getAdapterPosition());
-
+        }
     }
 }
-
-class MyAdViewHolder extends MyViewHolder {
-//    private CardView cardViewContainer;
-    private AdView adViewIntoRecycle;
-    MyAdViewHolder(View view) {
-        super(view, 5);
-         //cardViewContainer = view.findViewById(R.id.native_ad_container);
-
-        adViewIntoRecycle = view.findViewById(R.id.adViewIntoRecycleView);
-        //adView.setAdSize(AdSize.SMART_BANNER);
-//        adViewIntoRecycle.setAdSize(AdSize.LARGE_BANNER);
-//        adViewIntoRecycle.setAdUnitId(context.getString(R.string.banner_id));
-        adViewIntoRecycle.loadAd(new AdRequest.Builder().build());
-
-    }
-}}

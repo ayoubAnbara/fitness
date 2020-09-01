@@ -9,20 +9,16 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.applovin.sdk.AppLovinSdk;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -37,10 +33,10 @@ import guy4444.smartrate.SmartRate;
 public class MainActivity extends AppCompatActivity {
     Button btn_exercice, btn_setting, btn_calendar;
     ImageView btnTraining;
-    private InterstitialAd mInterstitialAd;
+    //  private InterstitialAd mInterstitialAd;
 
-    public static final String preference_counterAds ="showIntertiatialAds";
-    public static final String preference_counterAds_key ="counterShowAds";
+    public static final String preference_counterAds = "showIntertiatialAds";
+    public static final String preference_counterAds_key = "counterShowAds";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
-        AppLovinSdk.initializeSdk(getApplicationContext());
+        // AppLovinSdk.initializeSdk(getApplicationContext());
 
-        mainActivity = this;
+
         btn_calendar = findViewById(R.id.btn_calendar);
         btn_exercice = findViewById(R.id.btn_exercice);
         btn_setting = findViewById(R.id.btn_setting);
@@ -59,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         btn_calendar = findViewById(R.id.btn_calendar);
 // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         //   MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
-        MobileAds.initialize(this);
+
+        /*MobileAds.initialize(this);
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -73,7 +70,19 @@ public class MainActivity extends AppCompatActivity {
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
 
-        });
+        });*/
+
+        ImageView imageView = findViewById(R.id.adView);
+        imageView.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, MyWebView.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                }
+        );
 
         btn_exercice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(
                 preference_counterAds, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(preference_counterAds_key,0); // initialize counter
+        editor.putInt(preference_counterAds_key, 0); // initialize counter
         editor.apply();
 
         showRateUs();
@@ -200,38 +209,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    static MainActivity mainActivity;
-
-    public static MainActivity getInstance() {
-        return mainActivity;
-    }
-
-    public boolean isConnected(Context context) {
-// exist deprecation method
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = null;
-        if (cm != null) {
-            netinfo = cm.getActiveNetworkInfo();
-        }
-
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null &&
-                    wifi.isConnectedOrConnecting())) return true;
-            else return false;
-        } else
-            return false;
-    }
 
     @Override
     public void onBackPressed() {
 
         super.onBackPressed();
-        if (mInterstitialAd.isLoaded()) {
+       /* if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
-        }
+        }*/
         // else  showRateUs();
 
 

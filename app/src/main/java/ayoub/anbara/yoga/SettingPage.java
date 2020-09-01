@@ -39,13 +39,14 @@ public class SettingPage extends AppCompatActivity {
     YogaDB yogaDB;
     SwitchCompat switchAlarm;
     TimePicker timePicker;
-    InterstitialAd mInterstitialAd;
+    //InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_setting_page);
+        /*
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-9059580756298090/5839801307");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -57,7 +58,7 @@ public class SettingPage extends AppCompatActivity {
             }
 
         });
-
+*/
         btnSave = findViewById(R.id.btn_save);
         rdiEasy = findViewById(R.id.rdiEasy);
         rdiMedium = findViewById(R.id.rdiMedium);
@@ -209,9 +210,9 @@ public class SettingPage extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mInterstitialAd.isLoaded()) {
+       /* if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
-        }
+        }*/
         super.onBackPressed();
 
     }

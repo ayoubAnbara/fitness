@@ -4,18 +4,24 @@
     android:id="@+id/native_ad_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
     android:background="@android:color/transparent"
     card_view:cardElevation="3dp"
-    card_view:cardUseCompatPadding="true">
-    <com.google.android.gms.ads.AdView
+    card_view:cardUseCompatPadding="true"
+
+    >
+    <!--<com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adViewIntoRecycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="LARGE_BANNER"
-        ads:adUnitId="@string/banner_id"/>
-
+        ads:adUnitId="@string/banner_id"/>-->
+    <FrameLayout
+        android:id="@+id/adViewIntoRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ads2" />
 
 </androidx.cardview.widget.CardView>
