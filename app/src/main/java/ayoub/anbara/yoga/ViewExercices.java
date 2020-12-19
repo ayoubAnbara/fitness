@@ -32,7 +32,7 @@ public class ViewExercices extends AppCompatActivity {
     Button btnStart;
     boolean isRunning = false;
     YogaDB yogaDB;
-    // private InterstitialAd mInterstitialAd;
+     private InterstitialAd mInterstitialAd;
     private CountDownTimer countDownTimer;
     private MediaPlayer sound_fin;
     private SharedPreferences prefs;
@@ -43,7 +43,7 @@ public class ViewExercices extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_view_exercices);
 
-        /*mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
@@ -54,7 +54,6 @@ public class ViewExercices extends AppCompatActivity {
             }
 
         });
-        */
 
         sound_fin = MediaPlayer.create(this, R.raw.sound_fin);
         sound_fin.setVolume(1f, 1f);
@@ -98,14 +97,14 @@ public class ViewExercices extends AppCompatActivity {
                             int counterShowAds = prefs.getInt(MainActivity.preference_counterAds_key, 3);
                             counterShowAds++;
                             SharedPreferences.Editor editor = prefs.edit();
-                            /*
+
                             if (3<=counterShowAds){
                                 if (mInterstitialAd.isLoaded()) {
                                     mInterstitialAd.show();
                                     counterShowAds=0;
                               //      Toast.makeText(ViewExercices.this, "show", Toast.LENGTH_SHORT).show();
                                 }
-                            }*/
+                            }
                             editor.putInt(MainActivity.preference_counterAds_key, counterShowAds);
                             editor.apply();
 
@@ -120,14 +119,14 @@ public class ViewExercices extends AppCompatActivity {
                     int counterShowAds = prefs.getInt(MainActivity.preference_counterAds_key, 3);
                     counterShowAds++;
                     SharedPreferences.Editor editor = prefs.edit();
-                    /*if (3<=counterShowAds){
+                    if (3<=counterShowAds){
                         if (mInterstitialAd.isLoaded()) {
                             mInterstitialAd.show();
                             counterShowAds=0;
                       //      Toast.makeText(ViewExercices.this, "show", Toast.LENGTH_SHORT).show();
 
                         }
-                    }*/
+                    }
                     editor.putInt(MainActivity.preference_counterAds_key, counterShowAds);
                     editor.apply();
 

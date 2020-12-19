@@ -121,20 +121,20 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     class MyAdViewHolder extends MyViewHolder {
         private CardView cardViewContainer;
 
-        //    private AdView adViewIntoRecycle;
+           private AdView adViewIntoRecycle;
         MyAdViewHolder(final View view) {
             super(view, 5);
             cardViewContainer = view.findViewById(R.id.native_ad_container);
-            cardViewContainer.setOnClickListener((new View.OnClickListener() {
+           /* cardViewContainer.setOnClickListener((new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, MyWebView.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
-            }));
-       /* adViewIntoRecycle = view.findViewById(R.id.adViewIntoRecycleView);
-        adViewIntoRecycle.loadAd(new AdRequest.Builder().build());*/
+            }));*/
+            adViewIntoRecycle = view.findViewById(R.id.adViewIntoRecycleView);
+            adViewIntoRecycle.loadAd(new AdRequest.Builder().build());
 
         }
     }

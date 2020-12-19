@@ -11,17 +11,17 @@
     card_view:cardUseCompatPadding="true"
 
     >
-    <!--<com.google.android.gms.ads.AdView
+    <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adViewIntoRecycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="LARGE_BANNER"
-        ads:adUnitId="@string/banner_id"/>-->
-    <FrameLayout
+        ads:adUnitId="@string/banner_id"/>
+   <!-- <FrameLayout
         android:id="@+id/adViewIntoRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ads2" />
+        android:background="@drawable/ads2" />-->
 
 </androidx.cardview.widget.CardView>

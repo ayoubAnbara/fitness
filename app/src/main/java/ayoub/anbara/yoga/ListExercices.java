@@ -22,7 +22,7 @@ public class ListExercices extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView recyclerView;
     RecycleViewAdapter adapter;
-  //  private InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -37,17 +37,17 @@ public class ListExercices extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-//        mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
-//        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//        mInterstitialAd.setAdListener(new AdListener() {
-//            @Override
-//            public void onAdClosed() {
-//                // Load the next interstitial.
-//                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//            }
-//
-//        });
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
 
     }
 
