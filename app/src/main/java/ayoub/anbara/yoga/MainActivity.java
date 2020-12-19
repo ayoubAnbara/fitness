@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,14 +20,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.ads.nativetemplates.NativeTemplateStyle;
+import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.kennyc.bottomsheet.BottomSheetListener;
 import com.kennyc.bottomsheet.BottomSheetMenuDialogFragment;
 
+import ayoub.anbara.yoga.Database.YogaDB;
 import es.dmoral.toasty.Toasty;
 import guy4444.smartrate.SmartRate;
 
@@ -45,7 +55,16 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
-        // AppLovinSdk.initializeSdk(getApplicationContext());
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean("firstTime", false)) {
+            // <---- run your one time code here
+            databaseSetup();
+
+            // mark first time has ran.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
 
 
         btn_calendar = findViewById(R.id.btn_calendar);
@@ -56,21 +75,15 @@ public class MainActivity extends AppCompatActivity {
 // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
           // MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
 
-        MobileAds.initialize(this);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
 
+            }
         });
+      //  loadBannerAds();
+        loadNativeAds();
+        prepareInterstitialAds();
 
         /*ImageView imageView = findViewById(R.id.adView);
         imageView.setOnClickListener(
@@ -126,6 +139,24 @@ public class MainActivity extends AppCompatActivity {
         showRateUs();
     }
 
+    private void loadBannerAds() {
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+    private void prepareInterstitialAds() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
+    }
 
     public void more(View view) {
         new BottomSheetMenuDialogFragment.Builder(this)
@@ -240,6 +271,32 @@ public class MainActivity extends AppCompatActivity {
                 , 40
                 , 50
         );
+    }
+
+
+    private void loadNativeAds(){
+
+        AdLoader adLoader = new AdLoader.Builder(this, getString(R.string.native_ads_id))
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+//                        NativeTemplateStyle styles = new
+//                                NativeTemplateStyle.Builder().withMainBackgroundColor(background).build();
+
+                        TemplateView template = findViewById(R.id.adView);
+                      //  template.setStyles(styles);
+                        template.setNativeAd(unifiedNativeAd);
+
+                    }
+                })
+                .build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
+    }
+
+    private void databaseSetup(){
+        YogaDB yogaDB=new YogaDB(this);
+        yogaDB.saveSettingMode(0);
     }
 }
 

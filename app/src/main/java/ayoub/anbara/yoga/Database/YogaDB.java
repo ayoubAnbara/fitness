@@ -60,4 +60,6 @@ public class YogaDB extends SQLiteAssetHelper {
         String query=String.format("INSERT INTO WorkoutDays(Day) VALUES('%s');",value);
         db.execSQL(query);
     }
+
+
 }
