@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
           // MobileAds.initialize(this, "ca-app-pub-9059580756298090~2573551700");
 
         MobileAds.initialize(this);
-//        AdView mAdView = findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        ImageView imageView = findViewById(R.id.adView);
+        /*ImageView imageView = findViewById(R.id.adView);
         imageView.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
-        );
+        );*/
 
         btn_exercice.setOnClickListener(new View.OnClickListener() {
             @Override
